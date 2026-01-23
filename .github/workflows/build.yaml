@@ -1,0 +1,58 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  wheels:
+    uses: ./.github/workflows/_build_wheel.yaml
+
+  bin-check:
+    name: Check bin
+    needs: [wheels]
+    runs-on: ${{ matrix.platform.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - runner: windows-latest
+          - runner: windows-11-arm
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - uses: actions/download-artifact@v7
+        with:
+          pattern: wheel
+          path: dist
+
+      - run: pip install winflexbison-bin --no-index --find-links ./dist/
+
+      - run: win_bison --help
+      - run: win_flex --help
+
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v7
+
+      - run: uv tool install meson ninja
+
+      - name: Build beancount (13eb6da) with winflexbison
+        shell: bash
+        run: |
+          set -euxo pipefail
+
+          git clone https://github.com/beancount/beancount.git beancount --depth=1 --branch=13eb6da49f792573a407b38baf65f4548c55dac6
+          cd beancount
+
+          meson setup build -Dtests=disabled
+          meson compile -C build

@@ -1,0 +1,46 @@
+[build-system]
+requires = [
+  "pdm-backend>=2.4",
+  "cmake>=3.25,<4",
+]
+build-backend = "pdm.backend"
+
+[project]
+name = "winflexbison-bin"
+version = "2.5.25.0"
+description = "Windows flex and bison binaries from lexxmark/winflexbison built with CMake"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "upstream/COPYING" }
+authors = [{ name = "WinFlexBison maintainers" }]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Operating System :: Microsoft :: Windows",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development :: Build Tools",
+  "Topic :: Software Development :: Code Generators",
+]
+keywords = ["flex", "bison", "parser", "lexer", "winflexbison", "build"]
+
+[project.urls]
+Homepage = "https://github.com/trim21/winflexbison-py"
+Source = "https://github.com/trim21/winflexbison-py"
+Issues = "https://github.com/trim21/winflexbison-py/issues"
+
+[tool.pdm.build]
+is-purelib = false
+source-includes = [
+  "upstream/**",
+  "CMakeLists.txt",
+  "README.md",
+  "LICENSE",
+  "pdm_build.py",
+  "scripts/*",
+]
+
+[tool.pdm.build.wheel-data]
+scripts = [
+  "${BUILD_DIR}/scripts/*.exe",
+]

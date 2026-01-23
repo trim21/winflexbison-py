@@ -1,0 +1,4 @@
+[submodule "upstream"]
+	path = upstream
+	url = https://github.com/lexxmark/winflexbison
+	branch = v2.5.25
