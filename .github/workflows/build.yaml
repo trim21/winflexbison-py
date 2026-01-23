@@ -1,0 +1,38 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  wheels:
+    uses: ./.github/workflows/_build_wheel.yaml
+
+  bin-check:
+    name: Check bin
+    needs: [wheels]
+    runs-on: ${{ matrix.platform.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        platform:
+          - runner: windows-latest
+          - runner: windows-11-arm
+    steps:
+      - uses: actions/download-artifact@v7
+        with:
+          pattern: wheel
+          path: dist
+
+      - run: pip install winflexbison-bin --no-index --find-links ./dist/
+
+      - run: win_bison --help
+      - run: win_flex --help
