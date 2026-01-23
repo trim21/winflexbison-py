@@ -1,0 +1,46 @@
+[build-system]
+requires = [
+  "scikit-build-core>=0.10",
+  "cmake>=3.25",
+  "packaging>=23",
+]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "winflexbison"
+version = "2.5.25"
+description = "Windows flex and bison binaries from lexxmark/winflexbison built with CMake"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "upstream/COPYING" }
+authors = [{ name = "WinFlexBison maintainers" }]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+  "Operating System :: Microsoft :: Windows",
+  "Programming Language :: Python",
+  "Programming Language :: C",
+  "Topic :: Software Development :: Build Tools",
+  "Topic :: Software Development :: Code Generators",
+]
+keywords = ["flex", "bison", "parser", "lexer", "winflexbison", "build"]
+
+[project.urls]
+Homepage = "https://github.com/lexxmark/winflexbison"
+Source = "https://github.com/lexxmark/winflexbison"
+Issues = "https://github.com/lexxmark/winflexbison/issues"
+
+[tool.scikit-build]
+cmake.build-type = "Release"
+build.verbose = true
+sdist.include = [
+  "upstream/**",
+  "CMakeLists.txt",
+  "README.md",
+  "LICENSE",
+]
+
+[tool.scikit-build.wheel]
+py-api = "py3"

@@ -1,0 +1,8 @@
+This package repackages lexxmark/winflexbison.
+Full license texts are included in winflexbison/licenses inside the wheel:
+- COPYING.winflexbison (project build scripts)
+- COPYING.bison (GNU Bison GPLv3+)
+- COPYING.flex (Flex BSD-like license)
+- COPYING.DOC (documentation license)
+
+The upstream COPYING file at upstream/COPYING is used for project metadata.
