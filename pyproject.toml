@@ -34,6 +34,7 @@ win_bison = "winflexbison_bin._wrapper:main_win_bison"
 win_flex = "winflexbison_bin._wrapper:main_win_flex"
 
 [tool.pdm.build]
+package-dir = "src"
 is-purelib = false
 source-includes = [
   "upstream/**",
@@ -41,5 +42,5 @@ source-includes = [
   "README.md",
   "LICENSE",
   "pdm_build.py",
-  "winflexbison_bin/**",
+  "src/**",
 ]
