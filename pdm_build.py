@@ -68,11 +68,14 @@ def pdm_build_initialize(context: Context) -> None:
         str(payload_root),
     ]
 
-    shutil.copytree(ROOT_DIR / "src", build_dir)
-
     _run(cmake_configure, env=env)
     _run(cmake_build, env=env)
     _run(cmake_install, env=env)
+
+    shutil.copytree(
+        ROOT_DIR.joinpath("src/winflexbison_bin"),
+        build_dir.joinpath("winflexbison_bin"),
+    )
 
     shutil.rmtree(cmake_dir, ignore_errors=True)
 
