@@ -61,6 +61,7 @@ jobs:
           package-dir: winflexbison.tar.gz
         env:
           CIBW_BUILD_FRONTEND: 'build[uv]'
+          CIBW_BUILD: 'cp38-*'
           CIBW_ARCHS: '${{ matrix.platform.arch }}'
 
       - run: ls -ahl wheelhouse
