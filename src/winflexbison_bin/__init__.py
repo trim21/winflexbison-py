@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import sys
 from pathlib import Path
 
 __all__ = [
@@ -23,24 +22,3 @@ def get_bison_path() -> Path:
 def get_flex_path() -> Path:
     """Return the path to the packaged win_flex executable."""
     return get_payload_root() / "bin" / "Release" / "win_flex.exe"
-
-
-def _exec(binary: Path, argv: list[str]) -> None:
-    import subprocess
-
-    code = subprocess.call([str(binary), *argv])
-    raise SystemExit(code)
-
-
-def _main_win_bison() -> None:
-    binary = get_bison_path()
-    if not binary.exists():
-        raise SystemExit(f"win_bison binary not found at {binary}")
-    _exec(binary, sys.argv[1:])
-
-
-def _main_win_flex() -> None:
-    binary = get_flex_path()
-    if not binary.exists():
-        raise SystemExit(f"win_flex binary not found at {binary}")
-    _exec(binary, sys.argv[1:])
