@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import os
 import shutil
 import subprocess
@@ -13,7 +11,7 @@ SOURCE_DIR = ROOT_DIR / "upstream"
 DEFAULT_BUILD_TYPE = os.environ.get("CMAKE_BUILD_TYPE", "Release")
 
 
-def _run(command: list[str], *, env: dict[str, str]) -> None:
+def _run(command: "list[str]", *, env: "dict[str, str]") -> None:
     print(f"pdm-build execute: {shlex.join(command)}")
     subprocess.run(command, check=True, env=env)
 
@@ -71,12 +69,6 @@ def pdm_build_initialize(context: Context) -> None:
     _run(cmake_configure, env=env)
     _run(cmake_build, env=env)
     _run(cmake_install, env=env)
-
-    shutil.copytree(
-        ROOT_DIR.joinpath("src/winflexbison_bin"),
-        build_dir.joinpath("winflexbison_bin"),
-        dirs_exist_ok=True,
-    )
 
     shutil.rmtree(cmake_dir, ignore_errors=True)
 
