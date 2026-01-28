@@ -26,7 +26,6 @@ def pdm_build_initialize(context: Context) -> None:
     context.ensure_build_dir()
     build_dir = Path(context.build_dir)
     cmake_dir = build_dir / "cmake-build"
-    stage_dir = build_dir / "stage"
     package_dest = build_dir / "winflexbison_bin"
     payload_root = package_dest / "_payload"
 
@@ -38,8 +37,6 @@ def pdm_build_initialize(context: Context) -> None:
     }
 
     build_dir.mkdir(parents=True, exist_ok=True)
-    if stage_dir.exists():
-        shutil.rmtree(stage_dir)
     if package_dest.exists():
         shutil.rmtree(package_dest)
 
@@ -75,7 +72,6 @@ def pdm_build_initialize(context: Context) -> None:
     _run(cmake_build, env=env)
     _run(cmake_install, env=env)
 
-    shutil.rmtree(stage_dir, ignore_errors=True)
     shutil.rmtree(cmake_dir, ignore_errors=True)
 
 
