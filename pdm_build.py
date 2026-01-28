@@ -75,8 +75,8 @@ def pdm_build_initialize(context: Context) -> None:
     _run(cmake_build, env=env)
     _run(cmake_install, env=env)
 
-    shutil.rmtree(stage_dir)
-    shutil.rmtree(cmake_dir)
+    shutil.rmtree(stage_dir, ignore_errors=True)
+    shutil.rmtree(cmake_dir, ignore_errors=True)
 
 
 def pdm_build_finalize(context: "Context", artifact: Path) -> None:
