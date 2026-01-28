@@ -1,8 +1,5 @@
 [build-system]
-requires = [
-  "pdm-backend>=2.4",
-  "cmake>=3.25,<4",
-]
+requires = ["pdm-backend<3", "cmake>=3.25,<4"]
 build-backend = "pdm.backend"
 
 [project]
@@ -37,14 +34,13 @@ win_flex = "winflexbison_bin._wrapper:main_win_flex"
 package-dir = "src"
 is-purelib = false
 source-includes = [
-  "upstream/**",
+  "upstream/",
   "CMakeLists.txt",
   "README.md",
   "LICENSE",
   "pdm_build.py",
-  "src/**",
 ]
-includes = ["src"]
+# includes = ["src/"]
 
 [tool.cibuildwheel]
 test-command = "win_bison.exe --version"
