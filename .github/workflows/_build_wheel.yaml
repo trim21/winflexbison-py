@@ -60,7 +60,6 @@ jobs:
         with:
           package-dir: winflexbison.tar.gz
         env:
-          CIBW_BUILD_FRONTEND: 'build[uv]'
           CIBW_BUILD: 'cp310-*'
           CIBW_ARCHS: '${{ matrix.platform.arch }}'
 

@@ -44,3 +44,4 @@ source-includes = [
 
 [tool.cibuildwheel]
 test-command = "win_bison.exe --version"
+build-frontend = "build[uv]"
