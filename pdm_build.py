@@ -77,44 +77,12 @@ def pdm_build_initialize(context: Context) -> None:
         "--config",
         DEFAULT_BUILD_TYPE,
         "--prefix",
-        str(stage_dir),
+        str(payload_root),
     ]
 
     _run(cmake_configure, env=env)
     _run(cmake_build, env=env)
     _run(cmake_install, env=env)
-
-    payload_root.mkdir(parents=True, exist_ok=True)
-
-    def _copy_bison_data_files(*, install_root: Path, dest_payload_root: Path) -> None:
-        # win_bison expects its pkgdata files under `data/` relative to the executable.
-        marker_files = list(install_root.rglob("m4sugar.m4"))
-        candidates: list[Path] = []
-        for marker in marker_files:
-            # Expect: <...>/data/m4sugar/m4sugar.m4
-            if marker.parent.name != "m4sugar":
-                continue
-            if marker.parent.parent.name != "data":
-                continue
-            candidates.append(marker.parent.parent)
-
-        if not candidates:
-            raise FileNotFoundError(
-                "winflexbison install did not contain expected bison pkgdata marker "
-                "'data/m4sugar/m4sugar.m4'"
-            )
-
-        # Pick the shortest path (closest to prefix root) to avoid copying from nested build dirs.
-        data_dir = sorted(candidates, key=lambda p: len(p.parts))[0]
-
-        dest = dest_payload_root / "data"
-        if dest.exists():
-            shutil.rmtree(dest)
-        shutil.copytree(data_dir, dest)
-
-    shutil.copy2(stage_dir.joinpath("win_bison.exe"), payload_root / "win_bison.exe")
-    shutil.copy2(stage_dir.joinpath("win_flex.exe"), payload_root / "win_flex.exe")
-    _copy_bison_data_files(install_root=stage_dir, dest_payload_root=payload_root)
 
     shutil.rmtree(stage_dir)
     shutil.rmtree(cmake_dir)
