@@ -68,6 +68,8 @@ def pdm_build_initialize(context: Context) -> None:
         str(payload_root),
     ]
 
+    shutil.copytree(SOURCE_DIR / "src", build_dir)
+
     _run(cmake_configure, env=env)
     _run(cmake_build, env=env)
     _run(cmake_install, env=env)
