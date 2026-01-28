@@ -5,7 +5,12 @@ Python packaging of [lexxmark/winflexbison](https://github.com/lexxmark/winflexb
 ## Install from PyPI
 ```
 pip install winflexbison-bin
+```
 
+This installs lightweight console entry points (`win_flex`, `win_bison`) plus the actual binaries and bison pkgdata files inside the `winflexbison_bin` package.
+
+
+```
 win_flex.exe --help
 win_bison.exe --help
 ```
