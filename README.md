@@ -1,15 +1,14 @@
 # winflexbison Python wheel
 
-Python packaging of [lexxmark/winflexbison](https://github.com/lexxmark/winflexbison). The wheel builds the native `win_flex.exe` and `win_bison.exe` binaries.
-
-## What you get
-- `win_flex` and `win_bison` executables built from upstream.
+Python packaging of [lexxmark/winflexbison](https://github.com/lexxmark/winflexbison).
 
 ## Install from PyPI
 ```
-pip install winflexbison
+pip install winflexbison-bin
+
+win_flex.exe --help
+win_bison.exe --help
 ```
-This installs the native `win_flex.exe` and `win_bison.exe` into your Python Scripts directory (no Python wrappers).
 
 ## Build from source
 Using any pep517 build frontend
