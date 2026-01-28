@@ -75,6 +75,7 @@ def pdm_build_initialize(context: Context) -> None:
     shutil.copytree(
         ROOT_DIR.joinpath("src/winflexbison_bin"),
         build_dir.joinpath("winflexbison_bin"),
+        dirs_exist_ok=True,
     )
 
     shutil.rmtree(cmake_dir, ignore_errors=True)
