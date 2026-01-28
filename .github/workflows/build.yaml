@@ -19,13 +19,13 @@ jobs:
   bin-check:
     name: Check bin
     needs: [wheels]
-    runs-on: ${{ matrix.platform.runner }}
+    runs-on: ${{ matrix.runner }}
     strategy:
       fail-fast: false
       matrix:
-        platform:
-          - runner: windows-latest
-          - runner: windows-11-arm
+        runner:
+          - windows-latest
+          - windows-11-arm
     steps:
       - uses: actions/setup-python@v5
         with:
@@ -48,6 +48,7 @@ jobs:
       - run: uv tool install ninja
 
       - name: Build beancount (13eb6da) with winflexbison
+        if: "matrix.runner != 'windows-latest'"
         shell: bash
         run: |
           set -euxo pipefail
