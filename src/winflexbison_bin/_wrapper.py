@@ -1,12 +1,10 @@
-from __future__ import annotations
-
 import sys
 from pathlib import Path
 
 from . import get_bison_path, get_flex_path
 
 
-def _exec(binary: Path, argv: list[str]) -> None:
+def _exec(binary: Path, argv: "list[str]") -> None:
     import subprocess
 
     code = subprocess.call([str(binary), *argv])
