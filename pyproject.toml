@@ -7,10 +7,10 @@ build-backend = "pdm.backend"
 
 [project]
 name = "winflexbison-bin"
-version = "2.5.25.1"
+version = "2.5.25.2"
 description = "Windows flex and bison binaries from lexxmark/winflexbison built with CMake"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 license = { file = "upstream/COPYING" }
 authors = [{ name = "WinFlexBison maintainers" }]
 classifiers = [
