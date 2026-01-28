@@ -44,7 +44,8 @@ jobs:
       - name: Install the latest version of uv
         uses: astral-sh/setup-uv@v7
 
-      - run: uv tool install meson ninja
+      - run: uv tool install meson
+      - run: uv tool install ninja
 
       - name: Build beancount (13eb6da) with winflexbison
         shell: bash
