@@ -29,6 +29,10 @@ Homepage = "https://github.com/trim21/winflexbison-py"
 Source = "https://github.com/trim21/winflexbison-py"
 Issues = "https://github.com/trim21/winflexbison-py/issues"
 
+[project.scripts]
+win_bison = "winflexbison_bin._wrapper:main_win_bison"
+win_flex = "winflexbison_bin._wrapper:main_win_flex"
+
 [tool.pdm.build]
 is-purelib = false
 source-includes = [
@@ -37,10 +41,5 @@ source-includes = [
   "README.md",
   "LICENSE",
   "pdm_build.py",
-  "scripts/*",
-]
-
-[tool.pdm.build.wheel-data]
-scripts = [
-  "${BUILD_DIR}/scripts/*.exe",
+  "winflexbison_bin/**",
 ]
