@@ -16,9 +16,9 @@ def get_payload_root() -> Path:
 
 def get_bison_path() -> Path:
     """Return the path to the packaged win_bison executable."""
-    return get_payload_root() / "win_bison.exe"
+    return get_payload_root() / "bin" / "Release" / "win_bison.exe"
 
 
 def get_flex_path() -> Path:
     """Return the path to the packaged win_flex executable."""
-    return get_payload_root() / "win_flex.exe"
+    return get_payload_root() / "bin" / "Release" / "win_flex.exe"
