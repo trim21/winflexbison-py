@@ -27,7 +27,6 @@ def pdm_build_initialize(context: Context) -> None:
     build_dir = Path(context.build_dir)
     cmake_dir = build_dir / "cmake-build"
     stage_dir = build_dir / "stage"
-    package_src = ROOT_DIR / "winflexbison_bin"
     package_dest = build_dir / "winflexbison_bin"
     payload_root = package_dest / "_payload"
 
@@ -43,14 +42,6 @@ def pdm_build_initialize(context: Context) -> None:
         shutil.rmtree(stage_dir)
     if package_dest.exists():
         shutil.rmtree(package_dest)
-
-    # Stage the Python package into the build directory so the wheel always
-    # contains the importable package along with the generated payload.
-    shutil.copytree(
-        package_src,
-        package_dest,
-        ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "*.pyo", "_payload"),
-    )
 
     env = os.environ.copy()
 
