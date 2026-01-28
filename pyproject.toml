@@ -36,7 +36,7 @@ win_flex = "winflexbison_bin._main_win_flex"
 [tool.pdm.build]
 package-dir = "src"
 is-purelib = false
-includes = ["src/bison_bin"]
+includes = ["src/winflexbison_bin"]
 source-includes = [
   "upstream/**",
   "CMakeLists.txt",
