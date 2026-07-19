@@ -34,9 +34,9 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-          - runner: windows-latest
+          - runner: windows-2022
             arch: x86
-          - runner: windows-latest
+          - runner: windows-2022
             arch: AMD64
           - runner: windows-11-arm
             arch: ARM64
