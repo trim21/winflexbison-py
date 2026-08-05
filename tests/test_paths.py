@@ -1,5 +1,4 @@
 import pytest
-
 from winflexbison import win_bison_path, win_flex_path
 
 
