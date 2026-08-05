@@ -3,9 +3,9 @@ from __future__ import annotations
 from pathlib import Path
 
 __all__ = [
-    "get_payload_root",
     "get_bison_path",
     "get_flex_path",
+    "get_payload_root",
 ]
 
 

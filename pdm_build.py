@@ -1,8 +1,8 @@
 import os
+import shlex
 import shutil
 import subprocess
 from pathlib import Path
-import shlex
 
 from pdm.backend.hooks import Context
 
