@@ -59,3 +59,9 @@ jobs:
 
           meson setup build -Dtests=disabled
           meson compile -C build
+
+  test-checks: # referenced in Mergify conditions → name must be unique across all workflows
+    needs: [wheels, bin-check]
+    runs-on: ubuntu-slim
+    steps:
+      - run: echo "all checks passed"
