@@ -42,7 +42,7 @@ jobs:
       - run: win_flex --help
 
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v9.0.0
+        uses: astral-sh/setup-uv@v10.0.1
 
       - run: uv tool install meson
       - run: uv tool install ninja
