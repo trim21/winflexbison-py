@@ -54,7 +54,7 @@ jobs:
           mv dist/*.tar.gz winflexbison.tar.gz
 
       - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v9.0.0
+        uses: astral-sh/setup-uv@v10.2.0
 
       - name: Set up MSVC environment
         if: matrix.platform.arch == 'ARM64'
