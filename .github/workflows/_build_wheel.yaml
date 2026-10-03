@@ -56,6 +56,12 @@ jobs:
       - name: Install the latest version of uv
         uses: astral-sh/setup-uv@v9.0.0
 
+      - name: Set up MSVC environment
+        if: matrix.platform.arch == 'ARM64'
+        uses: TheMrMilchmann/setup-msvc-dev@v4
+        with:
+          arch: arm64
+
       - uses: pypa/cibuildwheel@v4.2.0
         with:
           package-dir: winflexbison.tar.gz
