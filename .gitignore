@@ -2,3 +2,6 @@
 .vscode/
 *.whl
 *.py[cod]
+build/
+dist/
+wheelhouse/
